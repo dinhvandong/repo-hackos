@@ -10,6 +10,7 @@ import vn.vti.moneypig.jwt.JwtInterceptor;
 import vn.vti.moneypig.models.Category;
 import vn.vti.moneypig.models.CategoryGroup;
 import vn.vti.moneypig.models.Device;
+import vn.vti.moneypig.repositories.DeviceRepository;
 import vn.vti.moneypig.services.CategoryGroupService;
 import vn.vti.moneypig.services.DeviceService;
 
@@ -19,11 +20,14 @@ import vn.vti.moneypig.services.DeviceService;
 public class DeviceController {
     @Autowired
     DeviceService deviceService;
+
+    @Autowired
+    DeviceRepository deviceRepository;
     @PostMapping("/findAll")
     public ResponseEntity<?> findAll(@RequestParam String token)
     {
         if(token.isBlank()){
-            return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(201, null,"device not exist"));
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(202, null,"token is not valid"));
         }
         token = "Bearer " + token;
 
@@ -33,6 +37,14 @@ public class DeviceController {
         }else {
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(201, null,"device not exist"));
         }
+
+    }
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<?> deleteAll()
+    {
+        deviceRepository.deleteAll();
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, "OK"," delete all data "));
+
 
     }
 
