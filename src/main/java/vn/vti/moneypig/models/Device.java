@@ -23,6 +23,8 @@ public class Device {
     private Long createdDate;
     private Long updatedDate;
 
+    private int status;
+
     public Device() {
     }
 
@@ -40,6 +42,14 @@ public class Device {
         this.tiktok = tiktok;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public Long getId() {

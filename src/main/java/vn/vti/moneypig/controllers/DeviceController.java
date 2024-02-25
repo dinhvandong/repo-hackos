@@ -61,4 +61,19 @@ public class DeviceController {
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(201, null,"device is not exist"));
         }
     }
+
+
+    @PostMapping("/copy")
+    public ResponseEntity<?> insert(@RequestParam Long id )
+    {
+        Device response =  deviceService.copy(id);
+        if(response!= null)
+        {
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, response,"device is copied "));
+        }
+        else
+        {
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(201, null,"device is not copy"));
+        }
+    }
 }

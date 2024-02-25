@@ -28,11 +28,8 @@ public class UserService {
     }
 
     public List<User> getAllUsers() {
-
         List<User> returnList = userRepository.findAll();
-
         returnList.sort(Comparator.comparingInt(User::getStatus).reversed());
-
         return returnList;
     }
 
