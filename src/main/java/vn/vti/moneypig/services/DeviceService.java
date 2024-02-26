@@ -14,16 +14,12 @@ import java.util.Optional;
 
 @Service
 public class DeviceService {
-
     @Autowired
     DeviceRepository deviceRepository;
-
     @Autowired
     SequenceGeneratorService sequenceGeneratorService;
-
     @Autowired
     IPApiService apiService;
-
     public Device insert(Device device){
         String ipaddr = device.getIp();
         device.setStatus(1);
