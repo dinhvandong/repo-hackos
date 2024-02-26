@@ -22,7 +22,7 @@ import static org.springframework.http.ResponseEntity.*;
 @RestController
 @RequestMapping("/api/files")
 public class FileController {
-    private static final String UPLOAD_DIRECTORY = "/upload/";
+    private static final String UPLOAD_DIRECTORY = "/var/www/uploads/";
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
