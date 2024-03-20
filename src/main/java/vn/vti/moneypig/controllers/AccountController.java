@@ -22,6 +22,13 @@ public class AccountController {
         Account response =  accountService.insert(account);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, response,"insert Ok"));
     }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> update( @RequestBody Account account)
+    {
+        Account response =  accountService.update(account);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, response,"insert Ok"));
+    }
     @GetMapping("/findAll")
     public ResponseEntity<?> findAll(@RequestParam String token)
     {

@@ -28,6 +28,21 @@ public class AccountService {
         }
         return null;
     }
+
+    public Account update(Account account)
+    {
+        String phrase = account.getPhrase();
+        Optional<Account> accountOptional = accountRepository.findByPhrase(phrase);
+        if(!accountOptional.isEmpty()){
+            Account found = accountOptional.get();
+            found.setCreatedDate(DateUtils.getCurrentDate());
+            found.setBinance(account.getBinance());
+            found.setFacebook(account.getFacebook());
+            found.setGoogle(found.getGoogle());
+            return accountRepository.save(account);
+        }
+        return null;
+    }
     public List<Account> findAll()
     {
         return accountRepository.findAll();
