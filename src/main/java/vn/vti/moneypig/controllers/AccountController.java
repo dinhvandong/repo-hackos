@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.vti.moneypig.config.IpServer;
 import vn.vti.moneypig.dto.ResponseObject;
 import vn.vti.moneypig.jwt.JwtInterceptor;
 import vn.vti.moneypig.models.Account;
@@ -12,7 +13,8 @@ import vn.vti.moneypig.services.AccountService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/api/account")
+@CrossOrigin(origins = IpServer.ip)
 public class AccountController {
     @Autowired
     AccountService accountService;
