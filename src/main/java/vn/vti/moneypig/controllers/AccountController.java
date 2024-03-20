@@ -47,4 +47,23 @@ public class AccountController {
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(202, null,"Not authenticated"));
         }
     }
+
+    @GetMapping("/findMemeo")
+    public ResponseEntity<?> findMemeo(@RequestParam String token)
+    {
+        if(token.isBlank()){
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(201, null,"Token blank"));
+        }
+        token = "Bearer " + token;
+        boolean isAuthenticated = JwtInterceptor.getInstance().isValidToken(token);
+        if(isAuthenticated)
+        {
+            List<Account> accountList = accountService.findAll();
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, accountList,"Ok"));
+        }
+        else
+        {
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(202, null,"Not authenticated"));
+        }
+    }
 }
