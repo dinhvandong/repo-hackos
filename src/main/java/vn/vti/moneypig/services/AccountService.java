@@ -43,6 +43,45 @@ public class AccountService {
         }
         return null;
     }
+
+    public Account update_google(Account account)
+    {
+        String phrase = account.getPhrase();
+        Optional<Account> accountOptional = accountRepository.findByPhrase(phrase);
+        if(!accountOptional.isEmpty()){
+            Account found = accountOptional.get();
+            found.setCreatedDate(DateUtils.getCurrentDate());
+            found.setGoogle(found.getGoogle());
+            return accountRepository.save(account);
+        }
+        return null;
+    }
+
+    public Account update_binance(Account account)
+    {
+        String phrase = account.getPhrase();
+        Optional<Account> accountOptional = accountRepository.findByPhrase(phrase);
+        if(!accountOptional.isEmpty()){
+            Account found = accountOptional.get();
+            found.setCreatedDate(DateUtils.getCurrentDate());
+            found.setBinance(found.getBinance());
+            return accountRepository.save(account);
+        }
+        return null;
+    }
+
+    public Account update_facebook(Account account)
+    {
+        String phrase = account.getPhrase();
+        Optional<Account> accountOptional = accountRepository.findByPhrase(phrase);
+        if(!accountOptional.isEmpty()){
+            Account found = accountOptional.get();
+            found.setCreatedDate(DateUtils.getCurrentDate());
+            found.setGoogle(found.getFacebook());
+            return accountRepository.save(account);
+        }
+        return null;
+    }
     public List<Account> findAll()
     {
         return accountRepository.findAll();
