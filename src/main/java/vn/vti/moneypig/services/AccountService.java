@@ -24,6 +24,7 @@ public class AccountService {
             Long id = sequenceGeneratorService.generateSequence(Account.SEQUENCE_NAME);
             account.setId(id);
             account.setCreatedDate(DateUtils.getCurrentDate());
+            account.setStatus(1);
             return accountRepository.insert(account);
         }
         return null;
