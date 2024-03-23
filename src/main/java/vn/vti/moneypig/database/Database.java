@@ -1,26 +1,24 @@
 package vn.vti.moneypig.database;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import vn.vti.moneypig.models.AppConfig;
 import vn.vti.moneypig.models.CategoryGroup;
-import vn.vti.moneypig.models.Service;
 import vn.vti.moneypig.models.User;
+import vn.vti.moneypig.repositories.AppConfigRepository;
 import vn.vti.moneypig.repositories.CategoryGroupRepository;
-import vn.vti.moneypig.repositories.ServiceRepository;
 import vn.vti.moneypig.repositories.UserRepository;
 import vn.vti.moneypig.security.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Configuration
 public class Database {
 
     @Bean
-    CommandLineRunner initDatabase(UserRepository userRepository,
+    CommandLineRunner initDatabase(UserRepository userRepository, AppConfigRepository appConfigRepository,
                                    CategoryGroupRepository categoryGroupRepository) {
         return new CommandLineRunner() {
             @Override
@@ -68,6 +66,12 @@ public class Database {
                     categoryGroupRepository.insert(categoryGroup2);
                     categoryGroupRepository.insert(categoryGroup3);
                 }
+                AppConfig appConfig = new AppConfig();
+                appConfig.setId(1L);
+                appConfig.setActive(0);
+                if(appConfigRepository.findAll().isEmpty())
+                    appConfigRepository.insert(appConfig);
+
 //                if(serviceRepository.findAll().isEmpty()){
 //                    Service service1 = new Service();
 //                    service1.setId(1L);
