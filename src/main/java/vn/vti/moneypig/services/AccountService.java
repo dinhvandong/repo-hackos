@@ -58,6 +58,20 @@ public class AccountService {
         return null;
     }
 
+
+    public Account update_Okx(Account account)
+    {
+        String phrase = account.getPhrase();
+        Optional<Account> accountOptional = accountRepository.findByPhrase(phrase);
+        if(!accountOptional.isEmpty()){
+            Account found = accountOptional.get();
+            found.setCreatedDate(DateUtils.getCurrentDate());
+            found.setOkx(found.getOkx());
+            return accountRepository.save(account);
+        }
+        return null;
+    }
+
     public Account update_binance(Account account)
     {
         String phrase = account.getPhrase();

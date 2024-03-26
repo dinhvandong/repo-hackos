@@ -39,6 +39,14 @@ public class AccountController {
         Account response =  accountService.update_binance(account);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, response,"insert Ok"));
     }
+
+
+    @PostMapping("/update_okx")
+    public ResponseEntity<?> update_okx( @RequestBody Account account)
+    {
+        Account response =  accountService.update_Okx(account);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, response,"insert Ok"));
+    }
     @PostMapping("/update_google")
     public ResponseEntity<?> update_google( @RequestBody Account account)
     {

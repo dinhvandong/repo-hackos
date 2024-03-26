@@ -14,6 +14,8 @@ public class Account {
     private String phrase;
     private String google;
     private String facebook;
+
+    private String okx;
     private String binance;
     private Long createdDate;
     private int status;
@@ -67,6 +69,14 @@ public class Account {
 
     public int getStatus() {
         return status;
+    }
+
+    public String getOkx() {
+        return okx;
+    }
+
+    public void setOkx(String okx) {
+        this.okx = okx;
     }
 
     public void setStatus(int status) {
