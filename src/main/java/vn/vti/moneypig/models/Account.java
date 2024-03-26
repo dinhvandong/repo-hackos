@@ -15,6 +15,7 @@ public class Account {
     private String google;
     private String facebook;
 
+    private String campaign;
     private String okx;
     private String binance;
     private Long createdDate;
@@ -73,6 +74,14 @@ public class Account {
 
     public String getOkx() {
         return okx;
+    }
+
+    public String getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(String campaign) {
+        this.campaign = campaign;
     }
 
     public void setOkx(String okx) {

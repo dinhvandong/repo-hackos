@@ -25,6 +25,7 @@ public class AccountService {
             account.setId(id);
             account.setCreatedDate(DateUtils.getCurrentDate());
             account.setStatus(1);
+
             return accountRepository.insert(account);
         }
         return null;
@@ -104,6 +105,11 @@ public class AccountService {
     public List<Account> findAll()
     {
         return accountRepository.findAll();
+    }
+
+    public List<Account> findAllByCampaign(String campaign)
+    {
+        return accountRepository.findAllByCampaign(campaign);
     }
     public List<Account> findAllUpdate()
     {
