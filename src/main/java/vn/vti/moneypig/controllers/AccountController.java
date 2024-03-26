@@ -79,6 +79,15 @@ public class AccountController {
         }
     }
 
+
+    @GetMapping("/findAllNoToken")
+    public ResponseEntity<?> findAllNoToken()
+    {
+        List<Account> accountList = accountService.findAllUpdate();
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, accountList,"Ok"));
+
+    }
+
     @GetMapping("/findMemeo")
     public ResponseEntity<?> findMemeo(@RequestParam String token)
     {
