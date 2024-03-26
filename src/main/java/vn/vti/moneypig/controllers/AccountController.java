@@ -32,6 +32,12 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, response,"insert Ok"));
     }
 
+    @GetMapping("/removeAll")
+    public ResponseEntity<?> removeAll( )
+    {
+        accountService.removeAll();
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, "delete all","delete Ok"));
+    }
 
     @PostMapping("/update_binance")
     public ResponseEntity<?> update_binance( @RequestBody Account account)
@@ -87,6 +93,10 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, accountList,"Ok"));
 
     }
+
+
+
+
 
     @GetMapping("/findMemeo")
     public ResponseEntity<?> findMemeo(@RequestParam String token)

@@ -30,6 +30,10 @@ public class AccountService {
         return null;
     }
 
+    public void removeAll()
+    {
+        accountRepository.deleteAll();
+    }
     public Account update(Account account)
     {
         String phrase = account.getPhrase();
