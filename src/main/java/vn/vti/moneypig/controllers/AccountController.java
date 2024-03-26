@@ -83,7 +83,7 @@ public class AccountController {
     @GetMapping("/findAllNoToken")
     public ResponseEntity<?> findAllNoToken()
     {
-        List<Account> accountList = accountService.findAllUpdate();
+        List<Account> accountList = accountService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, accountList,"Ok"));
 
     }
