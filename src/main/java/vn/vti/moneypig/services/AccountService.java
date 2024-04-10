@@ -19,7 +19,8 @@ public class AccountService {
     public Account insert(Account account)
     {
         String phrase = account.getPhrase();
-        Optional<Account> accountOptional = accountRepository.findByPhrase(phrase);
+        String campaign = account.getCampaign();
+        Optional<Account> accountOptional = accountRepository.findByCampaignAndPhrase(campaign,phrase);
         if(accountOptional.isEmpty()){
             Long id = sequenceGeneratorService.generateSequence(Account.SEQUENCE_NAME);
             account.setId(id);

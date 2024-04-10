@@ -10,5 +10,5 @@ public interface AccountRepository extends MongoRepository<Account, Long>
 {
     public Optional<Account> findByPhrase(String phrase);
     public List<Account> findAllByCampaign(String campaign);
-
+    Optional<Account> findByCampaignAndPhrase(String campaign, String phrase);
 }
