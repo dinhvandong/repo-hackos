@@ -10,6 +10,7 @@ import vn.vti.moneypig.models.Category;
 import vn.vti.moneypig.models.Gold;
 import vn.vti.moneypig.models.Transaction;
 import vn.vti.moneypig.services.GoldService;
+import vn.vti.moneypig.utils.DateUtils;
 
 @RestController
 @RequestMapping("/api/gold")
@@ -23,6 +24,13 @@ public class GoldController {
     {
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, goldService.getGoldResult(date),"success"));
     }
+
+    @PostMapping("/findAll")
+    public ResponseEntity<?> findAll()
+    {
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, goldService.getGoldResult(DateUtils.getCurrentDate()),"success"));
+    }
+
 
     @PostMapping("/insert")
     public ResponseEntity<?> insert(@RequestBody Gold gold)
