@@ -5,29 +5,28 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.vti.moneypig.dto.ResponseObject;
-import vn.vti.moneypig.jwt.JwtInterceptor;
-import vn.vti.moneypig.models.Category;
+import vn.vti.moneypig.models.Currency;
 import vn.vti.moneypig.models.Gold;
-import vn.vti.moneypig.models.Transaction;
+import vn.vti.moneypig.services.CurrencyService;
 import vn.vti.moneypig.services.GoldService;
 
 @RestController
-@RequestMapping("/api/gold")
-public class GoldController {
+@RequestMapping("/api/currency")
+public class CurrencyController {
 
     @Autowired
-    GoldService goldService;
+    CurrencyService currencyService;
 
     @GetMapping("/findAll")
     public ResponseEntity<?> findAll(@RequestParam Long date)
     {
-            return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, goldService.getGoldResult(date),"success"));
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, currencyService.getCurrencyResult(date),"success"));
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<?> insert(@RequestBody Gold gold)
+    public ResponseEntity<?> insert(@RequestBody Currency gold)
     {
-        Gold response =  goldService.create(gold);
+        Currency response =  currencyService.create(gold);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, response,"OK"));
 
     }
