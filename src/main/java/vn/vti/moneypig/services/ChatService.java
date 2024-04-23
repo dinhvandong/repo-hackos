@@ -8,6 +8,7 @@ import vn.vti.moneypig.database.SequenceGeneratorService;
 import vn.vti.moneypig.models.Chat;
 import vn.vti.moneypig.models.User;
 import vn.vti.moneypig.repositories.ChatRepository;
+import vn.vti.moneypig.utils.DateUtils;
 
 @Service
 public class ChatService {
@@ -27,6 +28,7 @@ public class ChatService {
         Long id = sequenceGeneratorService.generateSequence(Chat.SEQUENCE_NAME);
         chat.setId(id);
 
+        chat.setCreatedDate(DateUtils.getCurrentDateYYYYMMDDHHmmss());
         User user = userService.findById(chat.getSenderID());
         chat.setEmail(user.getEmail());
         return chatRepository.insert(chat);
@@ -35,6 +37,11 @@ public class ChatService {
     public Page<Chat> getPaginatedChats(int page, int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         return chatRepository.findAllByOrderByCreatedDateDesc(pageRequest);
+    }
+
+    public void deleteAll()
+    {
+        chatRepository.deleteAll();;
     }
     public Chat getLastChat() {
         return chatRepository.findFirstByOrderByCreatedDateDesc();

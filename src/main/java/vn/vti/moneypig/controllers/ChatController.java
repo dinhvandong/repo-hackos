@@ -8,7 +8,7 @@ import vn.vti.moneypig.models.Chat;
 import vn.vti.moneypig.services.ChatService;
 @CrossOrigin(origins = IpServer.ip)
 @RestController
-@RequestMapping("/chats")
+@RequestMapping("/api/chats")
 public class ChatController {
     private final ChatService chatService;
 
@@ -26,6 +26,12 @@ public class ChatController {
     public Page<Chat> getPaginatedChats(@RequestParam(defaultValue = "0") int page,
                                         @RequestParam(defaultValue = "50") int size) {
         return chatService.getPaginatedChats(page, size);
+    }
+
+    @GetMapping("/deleteAll")
+    public int deleteAll() {
+        chatService.deleteAll();
+        return 1;
     }
 
 
