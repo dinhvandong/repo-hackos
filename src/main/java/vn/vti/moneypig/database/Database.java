@@ -79,7 +79,9 @@ public class Database {
                 Command command = new Command();
                 command.setId(1L);
                 command.setValue(0);
+                command.setTimeUTC(DateUtils.getCurrentTimeUTC());
                 command.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+                System.out.println("UTC:"+DateUtils.getCurrentTimeUTC());
                 commandRepository.deleteAll();
                 if(commandRepository.findAll().isEmpty()){
                     commandRepository.insert(command);

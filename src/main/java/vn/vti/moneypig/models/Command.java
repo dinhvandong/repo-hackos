@@ -16,6 +16,16 @@ public class Command {
 
     private Long time;
 
+    private String timeUTC;
+
+    public String getTimeUTC() {
+        return timeUTC;
+    }
+
+    public void setTimeUTC(String timeUTC) {
+        this.timeUTC = timeUTC;
+    }
+
     public Long getId() {
         return id;
     }

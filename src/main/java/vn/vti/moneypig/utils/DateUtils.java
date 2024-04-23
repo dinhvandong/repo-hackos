@@ -2,6 +2,8 @@ package vn.vti.moneypig.utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
@@ -25,5 +27,10 @@ public class DateUtils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         String formattedDateTime = currentDateTime.format(formatter);
         return Long.parseLong(formattedDateTime);
+    }
+
+    public static String getCurrentTimeUTC() {
+        ZonedDateTime utcTime = ZonedDateTime.now(ZoneOffset.UTC);
+        return utcTime.toString();
     }
 }
