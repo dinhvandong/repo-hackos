@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import vn.vti.moneypig.database.SequenceGeneratorService;
 import vn.vti.moneypig.models.Chat;
+import vn.vti.moneypig.models.User;
 import vn.vti.moneypig.repositories.ChatRepository;
 
 @Service
@@ -18,11 +19,16 @@ public class ChatService {
     @Autowired
     SequenceGeneratorService sequenceGeneratorService;
 
+    @Autowired
+    UserService userService;
 
     public Chat create (Chat chat){
 
         Long id = sequenceGeneratorService.generateSequence(Chat.SEQUENCE_NAME);
         chat.setId(id);
+
+        User user = userService.findById(chat.getSenderID());
+        chat.setEmail(user.getEmail());
         return chatRepository.insert(chat);
     }
 
