@@ -79,7 +79,8 @@ public class Database {
                 Command command = new Command();
                 command.setId(1L);
                 command.setValue(0);
-                command.setTime(DateUtils.getCurrentDate());
+                command.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+                commandRepository.deleteAll();
                 if(commandRepository.findAll().isEmpty()){
                     commandRepository.insert(command);
                 }

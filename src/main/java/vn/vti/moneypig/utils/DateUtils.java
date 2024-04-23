@@ -11,4 +11,11 @@ public class DateUtils {
         String formattedDate = currentDate.format(formatter);
         return Long.parseLong(formattedDate);
     }
+
+    public static long getCurrentDateYYYYMMDDHHmmss(){
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String formattedDate = currentDate.format(formatter);
+        return Long.parseLong(formattedDate);
+    }
 }
