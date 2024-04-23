@@ -13,6 +13,7 @@ import vn.vti.moneypig.repositories.AppConfigRepository;
 import vn.vti.moneypig.repositories.CommandRepository;
 import vn.vti.moneypig.utils.DateUtils;
 
+import java.util.Date;
 import java.util.Optional;
 @CrossOrigin(origins = IpServer.ip)
 @RestController
@@ -40,6 +41,7 @@ public class CommandController {
         Command commandFound = commandOptional.get();
         commandFound.setValue(command);
         commandFound.setTime(DateUtils.getCurrentDate());
+        commandFound.setTimeUTC(DateUtils.getCurrentTimeUTC());
         return ResponseEntity.status(HttpStatus.OK).body
                 (new ResponseObject(200, commandRepository.save(commandFound), ""));
 
