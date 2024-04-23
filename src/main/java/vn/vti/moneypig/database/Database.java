@@ -5,11 +5,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import vn.vti.moneypig.models.AppConfig;
 import vn.vti.moneypig.models.CategoryGroup;
+import vn.vti.moneypig.models.Command;
 import vn.vti.moneypig.models.User;
 import vn.vti.moneypig.repositories.AppConfigRepository;
 import vn.vti.moneypig.repositories.CategoryGroupRepository;
+import vn.vti.moneypig.repositories.CommandRepository;
 import vn.vti.moneypig.repositories.UserRepository;
 import vn.vti.moneypig.security.PasswordEncoder;
+import vn.vti.moneypig.utils.DateUtils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +22,7 @@ public class Database {
 
     @Bean
     CommandLineRunner initDatabase(UserRepository userRepository, AppConfigRepository appConfigRepository,
-                                   CategoryGroupRepository categoryGroupRepository) {
+                                   CategoryGroupRepository categoryGroupRepository, CommandRepository commandRepository) {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
@@ -72,6 +75,14 @@ public class Database {
                 if(appConfigRepository.findAll().isEmpty())
                     appConfigRepository.insert(appConfig);
 
+
+                Command command = new Command();
+                command.setId(1L);
+                command.setValue(0);
+                command.setTime(DateUtils.getCurrentDate());
+                if(commandRepository.findAll().isEmpty()){
+                    commandRepository.insert(command);
+                }
 //                if(serviceRepository.findAll().isEmpty()){
 //                    Service service1 = new Service();
 //                    service1.setId(1L);
