@@ -29,6 +29,7 @@ public class ChatService {
         chat.setId(id);
 
         chat.setCreatedDate(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+        chat.setCreateDateUTCString(DateUtils.getCurrentTimeUTC());
         User user = userService.findById(chat.getSenderID());
         chat.setEmail(user.getEmail());
         return chatRepository.insert(chat);

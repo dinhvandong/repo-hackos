@@ -19,8 +19,17 @@ public class Chat {
 
     private Long createdDate;
 
+    private String createDateUTCString;
+
     private String email;
 
+    public String getCreateDateUTCString() {
+        return createDateUTCString;
+    }
+
+    public void setCreateDateUTCString(String createDateUTCString) {
+        this.createDateUTCString = createDateUTCString;
+    }
 
     public String getEmail() {
         return email;
