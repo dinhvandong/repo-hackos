@@ -31,7 +31,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@RequestBody UserDTO userDTO) {
-        if (userService.findByUsername(userDTO.getUsername())!=null) {
+        if (userService.existsByEmailOrUsername(userDTO.getEmail(), userDTO.getUsername())) {
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(201, "null", "Username already exists"));
         }
         User requestUser = new User();

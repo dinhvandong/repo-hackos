@@ -18,6 +18,16 @@ public class FinancialData {
     private   boolean isUp = false;
 
 
+    private String utcTime;
+
+    public String getUtcTime() {
+        return utcTime;
+    }
+
+    public void setUtcTime(String utcTime) {
+        this.utcTime = utcTime;
+    }
+
     public Long getId() {
         return id;
     }
