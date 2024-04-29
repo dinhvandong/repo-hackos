@@ -27,6 +27,12 @@ public class OilWorldDataController {
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, oilWorldDataService.getLast20Data(),"success"));
     }
 
+
+    @GetMapping("/findAll")
+    public ResponseEntity<?> findAll()
+    {
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, oilWorldDataService.findAll(),"success"));
+    }
     @GetMapping("/deleteAll")
     public ResponseEntity<?> deleteAll()
     {

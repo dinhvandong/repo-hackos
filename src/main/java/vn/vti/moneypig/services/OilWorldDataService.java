@@ -118,6 +118,11 @@ public class OilWorldDataService {
         return  oilWorldDataRepository.findFirst20ByOrderByIdDesc();
     }
 
+    public List<OilWorldData> findAll()
+    {
+        return oilWorldDataRepository.findAll();
+    }
+
     public  boolean deleteAll()
     {
          oilWorldDataRepository.deleteAll();
