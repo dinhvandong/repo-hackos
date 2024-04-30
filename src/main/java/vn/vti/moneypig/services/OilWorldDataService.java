@@ -68,34 +68,35 @@ public class OilWorldDataService {
         double randomValue2 = low + (max2 - min2) * random.nextDouble();
         double close = randomValue2;
         int randInt = random.nextInt(2);
+        int randDelta = random.nextInt(11);
         //============================================================================
         // 0 or 1;
         if(value ==0)
         {
             if(randInt == 0)
             {
-                oilWorldData.setClose(close);
-                oilWorldData.setHigh(high);
-                oilWorldData.setLow(low);
-                oilWorldData.setOpen(open);
+                oilWorldData.setClose(close-randDelta);
+                oilWorldData.setHigh(high-randDelta);
+                oilWorldData.setLow(low-randDelta);
+                oilWorldData.setOpen(open-randDelta);
                 oilWorldData.setUtcTime(DateUtils.getCurrentTimeUTC());
                 oilWorldData.setUp(false);
             }
             else
             {
-                oilWorldData.setClose(open);
-                oilWorldData.setHigh(high);
-                oilWorldData.setLow(low);
-                oilWorldData.setOpen(close);
+                oilWorldData.setClose(open+randDelta);
+                oilWorldData.setHigh(high+randDelta);
+                oilWorldData.setLow(low+randDelta);
+                oilWorldData.setOpen(close+randDelta);
                 oilWorldData.setUp(true);
                 oilWorldData.setUtcTime(DateUtils.getCurrentTimeUTC());
             }
         }else if(value==1) {
 
-            oilWorldData.setClose(close);
-            oilWorldData.setHigh(high);
-            oilWorldData.setLow(low);
-            oilWorldData.setOpen(open);
+            oilWorldData.setClose(close+randDelta);
+            oilWorldData.setHigh(high+randDelta);
+            oilWorldData.setLow(low+randDelta);
+            oilWorldData.setOpen(open+randDelta);
             oilWorldData.setUtcTime(DateUtils.getCurrentTimeUTC());
             oilWorldData.setUp(true);
 
@@ -103,10 +104,10 @@ public class OilWorldDataService {
         }else if(value ==-1){
             oilWorldData.setUp(false);
 
-            oilWorldData.setClose(open);
-            oilWorldData.setHigh(high);
-            oilWorldData.setLow(low);
-            oilWorldData.setOpen(close);
+            oilWorldData.setClose(open-randDelta);
+            oilWorldData.setHigh(high-randDelta);
+            oilWorldData.setLow(low-randDelta);
+            oilWorldData.setOpen(close-randDelta);
             oilWorldData.setUtcTime(DateUtils.getCurrentTimeUTC());
         }
 
