@@ -68,7 +68,7 @@ public class OilWorldDataService {
         double randomValue2 = low + (max2 - min2) * random.nextDouble();
         double close = randomValue2;
         int randInt = random.nextInt(2);
-        int randDelta = random.nextInt(5);
+        float randDelta = random.nextFloat(2);
         //============================================================================
         // 0 or 1;
         if(value ==0)
