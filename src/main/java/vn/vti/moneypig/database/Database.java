@@ -84,10 +84,20 @@ public class Database {
                 command2.setValue(0);
                 command2.setTimeUTC(DateUtils.getCurrentTimeUTC());
                 command2.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+
+
+                // Command form RON95
+
+                Command command3 = new Command();
+                command3.setId(3L);
+                command3.setValue(0);
+                command3.setTimeUTC(DateUtils.getCurrentTimeUTC());
+                command3.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
                 commandRepository.deleteAll();
                 if(commandRepository.findAll().isEmpty()){
                     commandRepository.insert(command);
                     commandRepository.insert(command2);
+                    commandRepository.insert(command3);
 
                 }
 //                FinancialData financialData1 = new FinancialData();
