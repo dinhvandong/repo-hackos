@@ -76,9 +76,19 @@ public class Database {
                 command.setTimeUTC(DateUtils.getCurrentTimeUTC());
                 command.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
                 System.out.println("UTC:"+DateUtils.getCurrentTimeUTC());
+
+                // Command form E5
+
+                Command command2 = new Command();
+                command2.setId(2L);
+                command2.setValue(0);
+                command2.setTimeUTC(DateUtils.getCurrentTimeUTC());
+                command2.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
                 commandRepository.deleteAll();
                 if(commandRepository.findAll().isEmpty()){
                     commandRepository.insert(command);
+                    commandRepository.insert(command2);
+
                 }
 //                FinancialData financialData1 = new FinancialData();
 //                financialData1.set

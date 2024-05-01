@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import vn.vti.moneypig.services.OilProductDataService;
 import vn.vti.moneypig.services.OilWorldDataService;
 
 @Component
@@ -14,6 +15,10 @@ public class CountdownTimer {
 
     @Autowired
     OilWorldDataService oilWorldDataService;
+
+    @Autowired
+    OilProductDataService oilProductDataService;
+
 
 
 //    @Scheduled(fixedRate = 60000) // Run every minute
@@ -27,6 +32,7 @@ public class CountdownTimer {
 
             remainingSeconds=60;
             oilWorldDataService.create();
+            oilProductDataService.create();
             System.out.println("Countdown finished!");
         }
     }

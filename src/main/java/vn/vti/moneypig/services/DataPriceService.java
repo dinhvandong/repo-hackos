@@ -5,16 +5,53 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import vn.vti.moneypig.models.OilPrice;
 import vn.vti.moneypig.models.OilPriceData;
+import vn.vti.moneypig.models.OilProduct;
+import vn.vti.moneypig.models.OildProductData;
 
 @Service
-public class OilPriceService {
+public class DataPriceService {
     private final RestTemplate restTemplate;
 
-    public OilPriceService(RestTemplate restTemplate) {
+    public DataPriceService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
 
+    public OilProduct getOilE5(){
+        String apiUrl = "http://150.95.113.18:3000/api/v1/oil-price";
+        //150.95.113.18:3000/api/v1/world-oil-prices
+        // Create headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
+
+        // Make the POST request
+        ResponseEntity<OildProductData> response = restTemplate.exchange(apiUrl, HttpMethod.POST, httpEntity, OildProductData.class);
+        OildProductData oilPriceData = response.getBody();
+        if (oilPriceData != null) {
+            return oilPriceData.getData()[0];
+        }
+        return null;
+
+    }
+
+    public OilProduct getOilRon95V(){
+        String apiUrl = "http://150.95.113.18:3000/api/v1/oil-price";
+        //150.95.113.18:3000/api/v1/world-oil-prices
+        // Create headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
+
+        // Make the POST request
+        ResponseEntity<OildProductData> response = restTemplate.exchange(apiUrl, HttpMethod.POST, httpEntity, OildProductData.class);
+        OildProductData oilPriceData = response.getBody();
+        if (oilPriceData != null) {
+            return oilPriceData.getData()[5];
+        }
+        return null;
+
+    }
 
 
     public OilPrice getOilPrice2() {

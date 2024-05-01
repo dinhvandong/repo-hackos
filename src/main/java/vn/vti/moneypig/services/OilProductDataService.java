@@ -3,10 +3,9 @@ package vn.vti.moneypig.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.vti.moneypig.database.SequenceGeneratorService;
-import vn.vti.moneypig.models.Command;
-import vn.vti.moneypig.models.OilPrice;
-import vn.vti.moneypig.models.OilWorldData;
+import vn.vti.moneypig.models.*;
 import vn.vti.moneypig.repositories.CommandRepository;
+import vn.vti.moneypig.repositories.OilProductDataRepository;
 import vn.vti.moneypig.repositories.OilWorldDataRepository;
 import vn.vti.moneypig.utils.DateUtils;
 
@@ -15,23 +14,24 @@ import java.util.Optional;
 import java.util.Random;
 
 @Service
-public class OilWorldDataService {
+public class OilProductDataService {
+
     @Autowired
-    OilWorldDataRepository oilWorldDataRepository;
+    OilProductDataRepository oilProductDataRepository;
     @Autowired
     SequenceGeneratorService sequenceGeneratorService;
     @Autowired
     CommandRepository commandRepository;
     @Autowired
     DataPriceService oilPriceService;
-   public  OilWorldData create()
-   {
-       OilWorldData oilWorldData = new OilWorldData();
-        Long id = sequenceGeneratorService.generateSequence(OilWorldData.SEQUENCE_NAME);
+    public OilProductData create()
+    {
+        OilProductData oilWorldData = new OilProductData();
+        Long id = sequenceGeneratorService.generateSequence(OilProductData.SEQUENCE_NAME);
         oilWorldData.setId(id);
         String timeUTCCurrent = (DateUtils.getCurrentTimeUTC().substring(0,16));
-        Optional<OilWorldData> optionalFinancialData = oilWorldDataRepository.findByUtcTime(timeUTCCurrent);
-        Optional<Command> lastCommand = commandRepository.findById(1L);
+        Optional<OilProductData> optionalFinancialData = oilProductDataRepository.findByUtcTime(timeUTCCurrent);
+        Optional<Command> lastCommand = commandRepository.findById(2L);
         Command command =  lastCommand.get();
         String timeUTC = command.getTimeUTC().substring(0,16);
         oilWorldData.setUtcTime(timeUTCCurrent);
@@ -45,10 +45,10 @@ public class OilWorldDataService {
             value = command.getValue();
             // 0 1 2 | 0 la giam, 1 random 2 tang
         }
-       System.out.println("Value:"+ value);
+        System.out.println("Value:"+ value);
         //==========================================================================
-        OilPrice oilPrice = oilPriceService.getOilPrice2();
-        double priceOrigin = Double.parseDouble(oilPrice.getPrice().replace(',','.'));
+        OilProduct oilPrice = oilPriceService.getOilE5();
+        double priceOrigin = Double.parseDouble(oilPrice.getPriceZone_1().replace(',','.'));
 
         double high = priceOrigin + 2;
         double low = priceOrigin - 2;
@@ -109,21 +109,21 @@ public class OilWorldDataService {
         }
 
         oilWorldData.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
-        return oilWorldDataRepository.insert(oilWorldData);
+        return oilProductDataRepository.insert(oilWorldData);
     }
-     public List<OilWorldData> getLast20Data(){
+    public List<OilProductData> getLast20Data(){
 
-        return  oilWorldDataRepository.findFirst20ByOrderByIdDesc();
+        return  oilProductDataRepository.findFirst20ByOrderByIdDesc();
     }
 
-    public List<OilWorldData> findAll()
+    public List<OilProductData> findAll()
     {
-        return oilWorldDataRepository.findAll();
+        return oilProductDataRepository.findAll();
     }
 
     public  boolean deleteAll()
     {
-         oilWorldDataRepository.deleteAll();
+        oilProductDataRepository.deleteAll();
         return  true;
     }
 }
