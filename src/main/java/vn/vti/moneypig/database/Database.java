@@ -93,11 +93,43 @@ public class Database {
                 command3.setValue(0);
                 command3.setTimeUTC(DateUtils.getCurrentTimeUTC());
                 command3.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+
+
+                // Command form Coffee
+
+                Command command4 = new Command();
+                command4.setId(4L);
+                command4.setValue(0);
+                command4.setTimeUTC(DateUtils.getCurrentTimeUTC());
+                command4.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+
+
+                // Command form Coffee Robusta
+
+                Command command5 = new Command();
+                command5.setId(5L);
+                command5.setValue(0);
+                command5.setTimeUTC(DateUtils.getCurrentTimeUTC());
+                command5.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+
+
+
+                // Command form Coffee Arabica
+
+                Command command6 = new Command();
+                command6.setId(6L);
+                command6.setValue(0);
+                command6.setTimeUTC(DateUtils.getCurrentTimeUTC());
+                command6.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
                 commandRepository.deleteAll();
                 if(commandRepository.findAll().isEmpty()){
                     commandRepository.insert(command);
                     commandRepository.insert(command2);
                     commandRepository.insert(command3);
+                    commandRepository.insert(command4);
+                    commandRepository.insert(command5);
+                    commandRepository.insert(command6);
+
 
                 }
 //                FinancialData financialData1 = new FinancialData();
