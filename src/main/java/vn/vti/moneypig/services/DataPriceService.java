@@ -3,10 +3,7 @@ package vn.vti.moneypig.services;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import vn.vti.moneypig.dto.ApiCoffeeArabicaResponse;
-import vn.vti.moneypig.dto.ApiCoffeeRobustaResponse;
-import vn.vti.moneypig.dto.CoffeeArabica;
-import vn.vti.moneypig.dto.CoffeeRobusta;
+import vn.vti.moneypig.dto.*;
 import vn.vti.moneypig.models.*;
 
 @Service
@@ -176,6 +173,38 @@ public class DataPriceService {
 
         if (oilPriceData != null) {
             return oilPriceData.getData().get(0);
+        }
+
+        return  null;
+    }
+
+
+    public GoldSjc getGoldSjc(){
+
+        String apiUrl = "http://150.95.113.18:3000/api/v1/gold-price-sjc";
+        //150.95.113.18:3000/api/v1/world-oil-prices
+
+        // Create headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // Create request body if required
+        // For a POST request, you may need to send a request body depending on the API's requirements
+        // Modify the requestBody object with the appropriate data structure and values
+
+        // MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
+        // requestBody.add("key1", "value1");
+        // requestBody.add("key2", "value2");
+
+        // Create the HTTP entity with headers and (optional) request body
+        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
+
+        // Make the POST request
+        ResponseEntity<ApiGoldSjcResponse> response = restTemplate.exchange(apiUrl, HttpMethod.POST, httpEntity, ApiGoldSjcResponse.class);
+        ApiGoldSjcResponse goldSjcResponse = response.getBody();
+
+        if (goldSjcResponse != null) {
+            return goldSjcResponse.getData().get(0);
         }
 
         return  null;

@@ -121,6 +121,15 @@ public class Database {
                 command6.setValue(0);
                 command6.setTimeUTC(DateUtils.getCurrentTimeUTC());
                 command6.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+
+
+                // Command form Gold SJC
+
+                Command command7 = new Command();
+                command7.setId(7L);
+                command7.setValue(0);
+                command7.setTimeUTC(DateUtils.getCurrentTimeUTC());
+                command7.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
                 commandRepository.deleteAll();
                 if(commandRepository.findAll().isEmpty()){
                     commandRepository.insert(command);
@@ -129,6 +138,7 @@ public class Database {
                     commandRepository.insert(command4);
                     commandRepository.insert(command5);
                     commandRepository.insert(command6);
+                    commandRepository.insert(command7);
 
 
                 }

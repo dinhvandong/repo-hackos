@@ -3,15 +3,15 @@ package vn.vti.moneypig.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.vti.moneypig.database.SequenceGeneratorService;
-import vn.vti.moneypig.dto.CoffeeArabica;
 import vn.vti.moneypig.dto.CoffeeRobusta;
-import vn.vti.moneypig.models.CoffeeArabicaData;
+import vn.vti.moneypig.dto.GoldSjc;
 import vn.vti.moneypig.models.CoffeeProductData;
 import vn.vti.moneypig.models.CoffeeRobustaData;
 import vn.vti.moneypig.models.Command;
-import vn.vti.moneypig.repositories.CoffeeArabicaDataRepository;
+import vn.vti.moneypig.models.GoldSjcData;
 import vn.vti.moneypig.repositories.CoffeeRobustaDataRepository;
 import vn.vti.moneypig.repositories.CommandRepository;
+import vn.vti.moneypig.repositories.GoldSjcDataRepository;
 import vn.vti.moneypig.utils.DateUtils;
 
 import java.util.List;
@@ -19,28 +19,29 @@ import java.util.Optional;
 import java.util.Random;
 
 @Service
-public class CoffeeArabicaService {
+public class GoldSjcService {
+
 
 
     @Autowired
-    CoffeeArabicaDataRepository coffeeArabicaDataRepository;
+    GoldSjcDataRepository goldSjcDataRepository;
     @Autowired
     SequenceGeneratorService sequenceGeneratorService;
     @Autowired
     CommandRepository commandRepository;
     @Autowired
     DataPriceService oilPriceService;
-    public CoffeeArabicaData create()
+    public GoldSjcData create()
     {
-        CoffeeArabicaData coffeeData = new CoffeeArabicaData();
-        Long id = sequenceGeneratorService.generateSequence(CoffeeProductData.SEQUENCE_NAME);
-        coffeeData.setId(id);
+        GoldSjcData goldSjcData = new GoldSjcData();
+        Long id = sequenceGeneratorService.generateSequence(GoldSjcData.SEQUENCE_NAME);
+        goldSjcData.setId(id);
         String timeUTCCurrent = (DateUtils.getCurrentTimeUTC().substring(0,16));
-        Optional<CoffeeArabicaData> optionalFinancialData = coffeeArabicaDataRepository.findByUtcTime(timeUTCCurrent);
-        Optional<Command> lastCommand = commandRepository.findById(6L);
+        Optional<GoldSjcData> optionalFinancialData = goldSjcDataRepository.findByUtcTime(timeUTCCurrent);
+        Optional<Command> lastCommand = commandRepository.findById(7L);
         Command command =  lastCommand.get();
         String timeUTC = command.getTimeUTC().substring(0,16);
-        coffeeData.setUtcTime(timeUTCCurrent);
+        goldSjcData.setUtcTime(timeUTCCurrent);
         int value = 0;// tao random
         // Co giá trị -1 0 1
         // Giá trị = 0 có nghĩa là không làm gì
@@ -53,8 +54,8 @@ public class CoffeeArabicaService {
         }
         System.out.println("Value:"+ value);
         //==========================================================================
-        CoffeeArabica oilPrice = oilPriceService.getCoffeeArabica();
-        double priceOrigin = Double.parseDouble(oilPrice.getMatchingPrice().replace(',','.'));
+        GoldSjc goldSjc = oilPriceService.getGoldSjc();
+        double priceOrigin = Double.parseDouble(goldSjc.getBuyingPrice().replace(".",""));
 
         double high = priceOrigin + 2;
         double low = priceOrigin - 2;
@@ -78,58 +79,58 @@ public class CoffeeArabicaService {
         {
             if(randInt == 0)
             {
-                coffeeData.setClose(close-randDelta);
-                coffeeData.setHigh(high-randDelta);
-                coffeeData.setLow(low-randDelta);
-                coffeeData.setOpen(open-randDelta);
-                coffeeData.setUtcTime(DateUtils.getCurrentTimeUTC());
-                coffeeData.setUp(false);
+                goldSjcData.setClose(close-randDelta);
+                goldSjcData.setHigh(high-randDelta);
+                goldSjcData.setLow(low-randDelta);
+                goldSjcData.setOpen(open-randDelta);
+                goldSjcData.setUtcTime(DateUtils.getCurrentTimeUTC());
+                goldSjcData.setUp(false);
             }
             else
             {
-                coffeeData.setClose(open+randDelta);
-                coffeeData.setHigh(high+randDelta);
-                coffeeData.setLow(low+randDelta);
-                coffeeData.setOpen(close+randDelta);
-                coffeeData.setUp(true);
-                coffeeData.setUtcTime(DateUtils.getCurrentTimeUTC());
+                goldSjcData.setClose(open+randDelta);
+                goldSjcData.setHigh(high+randDelta);
+                goldSjcData.setLow(low+randDelta);
+                goldSjcData.setOpen(close+randDelta);
+                goldSjcData.setUp(true);
+                goldSjcData.setUtcTime(DateUtils.getCurrentTimeUTC());
             }
         }else if(value==1) {
 
-            coffeeData.setClose(close+randDelta);
-            coffeeData.setHigh(high+randDelta);
-            coffeeData.setLow(low+randDelta);
-            coffeeData.setOpen(open+randDelta);
-            coffeeData.setUtcTime(DateUtils.getCurrentTimeUTC());
-            coffeeData.setUp(true);
+            goldSjcData.setClose(close+randDelta);
+            goldSjcData.setHigh(high+randDelta);
+            goldSjcData.setLow(low+randDelta);
+            goldSjcData.setOpen(open+randDelta);
+            goldSjcData.setUtcTime(DateUtils.getCurrentTimeUTC());
+            goldSjcData.setUp(true);
 
 
         }else if(value ==-1){
-            coffeeData.setUp(false);
+            goldSjcData.setUp(false);
 
-            coffeeData.setClose(open-randDelta);
-            coffeeData.setHigh(high-randDelta);
-            coffeeData.setLow(low-randDelta);
-            coffeeData.setOpen(close-randDelta);
-            coffeeData.setUtcTime(DateUtils.getCurrentTimeUTC());
+            goldSjcData.setClose(open-randDelta);
+            goldSjcData.setHigh(high-randDelta);
+            goldSjcData.setLow(low-randDelta);
+            goldSjcData.setOpen(close-randDelta);
+            goldSjcData.setUtcTime(DateUtils.getCurrentTimeUTC());
         }
 
-        coffeeData.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
-        return coffeeArabicaDataRepository.insert(coffeeData);
+        goldSjcData.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+        return goldSjcDataRepository.insert(goldSjcData);
     }
-    public List<CoffeeArabicaData> getLast20Data(){
+    public List<GoldSjcData> getLast20Data(){
 
-        return  coffeeArabicaDataRepository.findFirst20ByOrderByIdDesc();
+        return  goldSjcDataRepository.findFirst20ByOrderByIdDesc();
     }
 
-    public List<CoffeeArabicaData> findAll()
+    public List<GoldSjcData> findAll()
     {
-        return coffeeArabicaDataRepository.findAll();
+        return goldSjcDataRepository.findAll();
     }
 
     public  boolean deleteAll()
     {
-        coffeeArabicaDataRepository.deleteAll();
+        goldSjcDataRepository.deleteAll();
         return  true;
     }
 }
