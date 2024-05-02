@@ -55,7 +55,7 @@ public class GoldSjcService {
         System.out.println("Value:"+ value);
         //==========================================================================
         GoldSjc goldSjc = oilPriceService.getGoldSjc();
-        double priceOrigin = Double.parseDouble(goldSjc.getBuyingPrice().replace(".",""));
+        double priceOrigin = Double.parseDouble(goldSjc.getBuyingPrice().replace(".",""))/1000000;
 
         double high = priceOrigin + 2;
         double low = priceOrigin - 2;
