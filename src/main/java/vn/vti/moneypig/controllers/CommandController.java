@@ -30,9 +30,9 @@ public class CommandController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> setCommand(@RequestParam int command) {
+    public ResponseEntity<?> setCommand(@RequestParam int command, @RequestParam long idProduct) {
 
-        Optional<Command> commandOptional = commandRepository.findById(1L);
+        Optional<Command> commandOptional = commandRepository.findById(idProduct);
         if(commandOptional.isEmpty()){
             return ResponseEntity.status(HttpStatus.OK).body
                     (new ResponseObject(201, "false", "Not found ID=1"));
