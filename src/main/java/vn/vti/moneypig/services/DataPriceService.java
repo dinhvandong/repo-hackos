@@ -240,6 +240,103 @@ public class DataPriceService {
 
         return  null;
     }
+
+
+    public UsdExchangeRate getUsdExchangeRate(){
+
+        String apiUrl = "http://150.95.113.18:3000/api/v1/exchange-rate-vietcombank";
+        //150.95.113.18:3000/api/v1/world-oil-prices
+
+        // Create headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // Create request body if required
+        // For a POST request, you may need to send a request body depending on the API's requirements
+        // Modify the requestBody object with the appropriate data structure and values
+
+        // MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
+        // requestBody.add("key1", "value1");
+        // requestBody.add("key2", "value2");
+
+        // Create the HTTP entity with headers and (optional) request body
+        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
+
+        // Make the POST request
+        ResponseEntity<ApiUsdExchangeRateResponse> response
+                = restTemplate.exchange(apiUrl, HttpMethod.POST, httpEntity, ApiUsdExchangeRateResponse.class);
+        ApiUsdExchangeRateResponse apiUsdExchangeRateResponse = response.getBody();
+
+        if (apiUsdExchangeRateResponse != null) {
+            return apiUsdExchangeRateResponse.getData().get(0);
+        }
+
+        return  null;
+    }
+
+
+    public EuroExchangeRate getEuroExchangeRate(){
+
+        String apiUrl = "http://150.95.113.18:3000/api/v1/exchange-rate-vietcombank";
+        //150.95.113.18:3000/api/v1/world-oil-prices
+
+        // Create headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // Create request body if required
+        // For a POST request, you may need to send a request body depending on the API's requirements
+        // Modify the requestBody object with the appropriate data structure and values
+
+        // MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
+        // requestBody.add("key1", "value1");
+        // requestBody.add("key2", "value2");
+
+        // Create the HTTP entity with headers and (optional) request body
+        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
+
+        // Make the POST request
+        ResponseEntity<ApiEuroExchangeRateResponse> response = restTemplate.exchange(apiUrl, HttpMethod.POST, httpEntity, ApiEuroExchangeRateResponse.class);
+        ApiEuroExchangeRateResponse apiEuroExchangeRateResponse = response.getBody();
+
+        if (apiEuroExchangeRateResponse != null) {
+            return apiEuroExchangeRateResponse.getData().get(2);
+        }
+
+        return  null;
+    }
+
+
+    public GbpExchangeRate getGbpExchangeRate(){
+
+        String apiUrl = "http://150.95.113.18:3000/api/v1/exchange-rate-vietcombank";
+        //150.95.113.18:3000/api/v1/world-oil-prices
+
+        // Create headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // Create request body if required
+        // For a POST request, you may need to send a request body depending on the API's requirements
+        // Modify the requestBody object with the appropriate data structure and values
+
+        // MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
+        // requestBody.add("key1", "value1");
+        // requestBody.add("key2", "value2");
+
+        // Create the HTTP entity with headers and (optional) request body
+        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
+
+        // Make the POST request
+        ResponseEntity<ApiGbpExchangeRateResponse> response = restTemplate.exchange(apiUrl, HttpMethod.POST, httpEntity, ApiGbpExchangeRateResponse.class);
+        ApiGbpExchangeRateResponse apiGbpExchangeRateResponse = response.getBody();
+
+        if (apiGbpExchangeRateResponse != null) {
+            return apiGbpExchangeRateResponse.getData().get(4);
+        }
+
+        return  null;
+    }
     public OilPrice getOilPrice() {
         String apiUrl = "http://150.95.113.18:3000/api/v1/world-oil-prices";
 

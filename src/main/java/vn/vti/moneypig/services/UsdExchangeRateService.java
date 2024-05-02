@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.vti.moneypig.database.SequenceGeneratorService;
 import vn.vti.moneypig.dto.GoldBtmc;
+import vn.vti.moneypig.dto.UsdExchangeRate;
 import vn.vti.moneypig.models.Command;
 import vn.vti.moneypig.models.GoldBtmcData;
+import vn.vti.moneypig.models.UsdExchangeRateData;
 import vn.vti.moneypig.repositories.CommandRepository;
 import vn.vti.moneypig.repositories.GoldBtmcDataRepository;
+import vn.vti.moneypig.repositories.UsdExchangeRateDataRepository;
 import vn.vti.moneypig.utils.DateUtils;
 
 import java.util.List;
@@ -20,24 +23,24 @@ public class UsdExchangeRateService {
 
 
     @Autowired
-    GoldBtmcDataRepository goldBtmcDataRepository;
+    UsdExchangeRateDataRepository usdExchangeRateDataRepository;
     @Autowired
     SequenceGeneratorService sequenceGeneratorService;
     @Autowired
     CommandRepository commandRepository;
     @Autowired
-    DataPriceService oilPriceService;
-    public GoldBtmcData create()
+    DataPriceService dataPriceService;
+    public UsdExchangeRateData create()
     {
-        GoldBtmcData goldSjcData = new GoldBtmcData();
-        Long id = sequenceGeneratorService.generateSequence(GoldBtmcData.SEQUENCE_NAME);
-        goldSjcData.setId(id);
+        UsdExchangeRateData usdExchangeRateData = new UsdExchangeRateData();
+        Long id = sequenceGeneratorService.generateSequence(UsdExchangeRateData.SEQUENCE_NAME);
+        usdExchangeRateData.setId(id);
         String timeUTCCurrent = (DateUtils.getCurrentTimeUTC().substring(0,16));
-        Optional<GoldBtmcData> optionalFinancialData = goldBtmcDataRepository.findByUtcTime(timeUTCCurrent);
-        Optional<Command> lastCommand = commandRepository.findById(7L);
+        Optional<UsdExchangeRateData> optionalFinancialData = usdExchangeRateDataRepository.findByUtcTime(timeUTCCurrent);
+        Optional<Command> lastCommand = commandRepository.findById(9L);
         Command command =  lastCommand.get();
         String timeUTC = command.getTimeUTC().substring(0,16);
-        goldSjcData.setUtcTime(timeUTCCurrent);
+        usdExchangeRateData.setUtcTime(timeUTCCurrent);
         int value = 0;// tao random
         // Co giá trị -1 0 1
         // Giá trị = 0 có nghĩa là không làm gì
@@ -50,8 +53,8 @@ public class UsdExchangeRateService {
         }
         System.out.println("Value:"+ value);
         //==========================================================================
-        GoldBtmc goldSjc = oilPriceService.getGoldBtmc();
-        double priceOrigin = Double.parseDouble(goldSjc.getBuyingPrice().replace(".",""))/1000000;
+        UsdExchangeRate usdExchangeRate = dataPriceService.getUsdExchangeRate();
+        double priceOrigin = Double.parseDouble(usdExchangeRate.getBuyingPrice());
 
         double high = priceOrigin + 2;
         double low = priceOrigin - 2;
@@ -75,59 +78,59 @@ public class UsdExchangeRateService {
         {
             if(randInt == 0)
             {
-                goldSjcData.setClose(close-randDelta);
-                goldSjcData.setHigh(high-randDelta);
-                goldSjcData.setLow(low-randDelta);
-                goldSjcData.setOpen(open-randDelta);
-                goldSjcData.setUtcTime(DateUtils.getCurrentTimeUTC());
-                goldSjcData.setUp(false);
+                usdExchangeRateData.setClose(close-randDelta);
+                usdExchangeRateData.setHigh(high-randDelta);
+                usdExchangeRateData.setLow(low-randDelta);
+                usdExchangeRateData.setOpen(open-randDelta);
+                usdExchangeRateData.setUtcTime(DateUtils.getCurrentTimeUTC());
+                usdExchangeRateData.setUp(false);
             }
             else
             {
-                goldSjcData.setClose(open+randDelta);
-                goldSjcData.setHigh(high+randDelta);
-                goldSjcData.setLow(low+randDelta);
-                goldSjcData.setOpen(close+randDelta);
-                goldSjcData.setUp(true);
-                goldSjcData.setUtcTime(DateUtils.getCurrentTimeUTC());
+                usdExchangeRateData.setClose(open+randDelta);
+                usdExchangeRateData.setHigh(high+randDelta);
+                usdExchangeRateData.setLow(low+randDelta);
+                usdExchangeRateData.setOpen(close+randDelta);
+                usdExchangeRateData.setUp(true);
+                usdExchangeRateData.setUtcTime(DateUtils.getCurrentTimeUTC());
             }
         }else if(value==1) {
 
-            goldSjcData.setClose(close+randDelta);
-            goldSjcData.setHigh(high+randDelta);
-            goldSjcData.setLow(low+randDelta);
-            goldSjcData.setOpen(open+randDelta);
-            goldSjcData.setUtcTime(DateUtils.getCurrentTimeUTC());
-            goldSjcData.setUp(true);
+            usdExchangeRateData.setClose(close+randDelta);
+            usdExchangeRateData.setHigh(high+randDelta);
+            usdExchangeRateData.setLow(low+randDelta);
+            usdExchangeRateData.setOpen(open+randDelta);
+            usdExchangeRateData.setUtcTime(DateUtils.getCurrentTimeUTC());
+            usdExchangeRateData.setUp(true);
 
 
         }else if(value ==-1){
-            goldSjcData.setUp(false);
+            usdExchangeRateData.setUp(false);
 
-            goldSjcData.setClose(open-randDelta);
-            goldSjcData.setHigh(high-randDelta);
-            goldSjcData.setLow(low-randDelta);
-            goldSjcData.setOpen(close-randDelta);
-            goldSjcData.setUtcTime(DateUtils.getCurrentTimeUTC());
+            usdExchangeRateData.setClose(open-randDelta);
+            usdExchangeRateData.setHigh(high-randDelta);
+            usdExchangeRateData.setLow(low-randDelta);
+            usdExchangeRateData.setOpen(close-randDelta);
+            usdExchangeRateData.setUtcTime(DateUtils.getCurrentTimeUTC());
         }
 
-        goldSjcData.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
-        return goldBtmcDataRepository.insert(goldSjcData);
+        usdExchangeRateData.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+        return usdExchangeRateDataRepository.insert(usdExchangeRateData);
                 //.insert(goldSjcData);
     }
-    public List<GoldBtmcData> getLast20Data(){
+    public List<UsdExchangeRateData> getLast20Data(){
 
-        return  goldBtmcDataRepository.findFirst20ByOrderByIdDesc();
+        return  usdExchangeRateDataRepository.findFirst20ByOrderByIdDesc();
     }
 
-    public List<GoldBtmcData> findAll()
+    public List<UsdExchangeRateData> findAll()
     {
-        return goldBtmcDataRepository.findAll();
+        return usdExchangeRateDataRepository.findAll();
     }
 
     public  boolean deleteAll()
     {
-        goldBtmcDataRepository.deleteAll();
+        usdExchangeRateDataRepository.deleteAll();
         return  true;
     }
 }

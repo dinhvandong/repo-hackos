@@ -36,6 +36,16 @@ public class CountdownTimer {
     @Autowired
     GoldBtmcService goldBtmcService;
 
+    @Autowired
+    UsdExchangeRateService usdExchangeRateService;
+
+
+    @Autowired
+    EuroExchangeRateService euroExchangeRateService;
+
+    @Autowired
+    GbpExchangeRateService gbpExchangeRateService;
+
 //    @Scheduled(fixedRate = 60000) // Run every minute
 
     @Scheduled(fixedRate = 1000) // Run every second
@@ -54,6 +64,9 @@ public class CountdownTimer {
             coffeeArabicaService.create();
             goldSjcService.create();
             goldBtmcService.create();
+            usdExchangeRateService.create();
+            euroExchangeRateService.create();
+            gbpExchangeRateService.create();
 
             System.out.println("Countdown finished!");
         }

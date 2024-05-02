@@ -138,8 +138,33 @@ public class Database {
                 command8.setValue(0);
                 command8.setTimeUTC(DateUtils.getCurrentTimeUTC());
                 command8.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+
+
+                // Command from USD
+                Command command9 = new Command();
+                command9.setId(9L);
+                command9.setValue(0);
+                command9.setTimeUTC(DateUtils.getCurrentTimeUTC());
+                command9.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+
+
+                // Command from EURO
+                Command command10 = new Command();
+                command10.setId(10L);
+                command10.setValue(0);
+                command10.setTimeUTC(DateUtils.getCurrentTimeUTC());
+                command10.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+
+
+                // Command from BANG ANH
+                Command command11 = new Command();
+                command11.setId(11L);
+                command11.setValue(0);
+                command11.setTimeUTC(DateUtils.getCurrentTimeUTC());
+                command11.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
                 commandRepository.deleteAll();
                 if(commandRepository.findAll().isEmpty()){
+
                     commandRepository.insert(command);
                     commandRepository.insert(command2);
                     commandRepository.insert(command3);
@@ -148,7 +173,9 @@ public class Database {
                     commandRepository.insert(command6);
                     commandRepository.insert(command7);
                     commandRepository.insert(command8);
-
+                    commandRepository.insert(command9);
+                    commandRepository.insert(command10);
+                    commandRepository.insert(command11);
 
                 }
 //                FinancialData financialData1 = new FinancialData();
