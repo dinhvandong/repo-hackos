@@ -130,6 +130,13 @@ public class Database {
                 command7.setValue(0);
                 command7.setTimeUTC(DateUtils.getCurrentTimeUTC());
                 command7.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
+
+
+                Command command8 = new Command();
+                command8.setId(8L);
+                command8.setValue(0);
+                command8.setTimeUTC(DateUtils.getCurrentTimeUTC());
+                command8.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
                 commandRepository.deleteAll();
                 if(commandRepository.findAll().isEmpty()){
                     commandRepository.insert(command);
@@ -139,6 +146,7 @@ public class Database {
                     commandRepository.insert(command5);
                     commandRepository.insert(command6);
                     commandRepository.insert(command7);
+                    commandRepository.insert(command8);
 
 
                 }

@@ -33,6 +33,9 @@ public class CountdownTimer {
     @Autowired
     GoldSjcService goldSjcService;
 
+    @Autowired
+    GoldBtmcService goldBtmcService;
+
 //    @Scheduled(fixedRate = 60000) // Run every minute
 
     @Scheduled(fixedRate = 1000) // Run every second
@@ -50,6 +53,8 @@ public class CountdownTimer {
             coffeeRobustaService.create();
             coffeeArabicaService.create();
             goldSjcService.create();
+            goldBtmcService.create();
+
             System.out.println("Countdown finished!");
         }
     }
