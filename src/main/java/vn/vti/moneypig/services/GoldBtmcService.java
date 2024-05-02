@@ -37,7 +37,7 @@ public class GoldBtmcService {
         goldSjcData.setId(id);
         String timeUTCCurrent = (DateUtils.getCurrentTimeUTC().substring(0,16));
         Optional<GoldBtmcData> optionalFinancialData = goldBtmcDataRepository.findByUtcTime(timeUTCCurrent);
-        Optional<Command> lastCommand = commandRepository.findById(7L);
+        Optional<Command> lastCommand = commandRepository.findById(8L);
         Command command =  lastCommand.get();
         String timeUTC = command.getTimeUTC().substring(0,16);
         goldSjcData.setUtcTime(timeUTCCurrent);

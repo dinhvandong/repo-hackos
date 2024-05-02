@@ -131,6 +131,7 @@ public class Database {
                 command7.setTimeUTC(DateUtils.getCurrentTimeUTC());
                 command7.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
 
+                // Command form BTMC
 
                 Command command8 = new Command();
                 command8.setId(8L);
