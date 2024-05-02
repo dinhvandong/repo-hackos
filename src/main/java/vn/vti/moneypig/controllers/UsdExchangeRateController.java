@@ -11,7 +11,7 @@ import vn.vti.moneypig.services.GoldBtmcService;
 
 @CrossOrigin(origins = IpServer.ip)
 @RestController
-@RequestMapping("/api/gold_btmc")
+@RequestMapping("/api/usd_exchangerate")
 public class UsdExchangeRateController {
 
     @Autowired
