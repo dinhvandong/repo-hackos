@@ -13,26 +13,41 @@ public class CommandCoffeeVn {
     @Transient
     public static final String SEQUENCE_NAME = "command_coffee_vn_sequence";
     private int value; //-1 1
-
     private double money;
     private Long time;
+    private boolean status = true;
 
+    private int result=0;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
     private String timeUTC;
-
     public String getTimeUTC() {
         return timeUTC;
     }
-
     public void setTimeUTC(String timeUTC) {
         this.timeUTC = timeUTC;
     }
-
     private String username;
-
     public double getMoney() {
         return money;
     }
-
     public void setMoney(double money) {
         this.money = money;
     }

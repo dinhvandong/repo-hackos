@@ -45,9 +45,18 @@ public class CommandCoffeeVnService {
         return commandCoffeeVnRepository.findLastMessagesWithinTimeframeGroupedByUser();
     }
 
+
+    public boolean deleteAll(){
+
+        commandCoffeeVnRepository.deleteAll();
+        return  true;
+    }
+
     public CommandCoffeeVn create(CommandCoffeeVn commandCoffeeVn){
         Long id = sequenceGeneratorService.generateSequence(CommandCoffeeVn.SEQUENCE_NAME);
         commandCoffeeVn.setId(id);
+        commandCoffeeVn.setStatus(true);
+        commandCoffeeVn.setResult(0);
         commandCoffeeVn.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
         commandCoffeeVn.setTimeUTC(DateUtils.getCurrentTimeUTC());
         return commandCoffeeVnRepository.insert(commandCoffeeVn);

@@ -39,6 +39,11 @@ public class CommandCoffeeVnController {
         return commandCoffeeVnService.create(commandCoffeeVn);
     }
 
+    @PostMapping("/deleteAll")
+    public boolean deleteAll(){
+
+        return commandCoffeeVnService.deleteAll();
+    }
 
 
     @GetMapping("/findPaging")
