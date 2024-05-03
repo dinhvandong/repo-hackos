@@ -46,6 +46,24 @@ public class UserController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(201, null,"user not exist"));
     }
+
+    @GetMapping("/getGold")
+    public ResponseEntity<?> getGold(@RequestParam String username){
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, userService.getGold(username),"ok"));
+    }
+
+    @GetMapping("/archivedGold")
+    public ResponseEntity<?> archivedGold(@RequestParam String username, @RequestParam double gold){
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, userService.archiveGold(gold,username),"ok"));
+    }
+
+
+    @GetMapping("/subGold")
+    public ResponseEntity<?> subGold(@RequestParam String username, @RequestParam double gold){
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(200, userService.subGold(gold,username),"ok"));
+    }
+
+
     @GetMapping("/findToken")
     public ResponseEntity<?> findByTk(@RequestParam String token) {
        // String token = JwtInterceptor.getInstance().extractTokenFromRequest(request);

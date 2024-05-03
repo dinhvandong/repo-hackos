@@ -23,6 +23,8 @@ public class User {
     private String avatar;
     private Address workAddress;
     private  String referCode;
+
+    private double gold=0;
     public User(Long id, String username, String email, String password, String googleId, String phone, int status) {
         this.id = id;
         this.username = username;
@@ -31,6 +33,14 @@ public class User {
         this.googleId = googleId;
         this.phone = phone;
         this.status = status;
+    }
+
+    public double getGold() {
+        return gold;
+    }
+
+    public void setGold(double gold) {
+        this.gold = gold;
     }
 
     public User(String username, String password) {

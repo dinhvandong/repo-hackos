@@ -47,6 +47,31 @@ public class UserService {
         //  return userRepository.findByUsername(username).get();
     }
 
+    public User archiveGold(double gold, String username){
+
+        User userFound = findByUsername(username);
+        userFound.setGold(userFound.getGold()+gold);
+        return userRepository.save(userFound);
+    }
+
+    public User subGold(double gold, String username){
+
+        User userFound = findByUsername(username);
+        double currentGold = userFound.getGold();
+        if(gold> currentGold){
+            return null;
+        }
+        userFound.setGold(userFound.getGold()-gold);
+        return userRepository.save(userFound);
+    }
+
+    public double getGold(String username){
+        double gold = 0;
+        User userFound = findByUsername(username);
+        gold = userFound.getGold();
+        return  gold;
+    }
+
 
     public  boolean existsByEmailOrUsername(String email, String username){
 
