@@ -12,6 +12,7 @@ import vn.vti.moneypig.database.SequenceGeneratorService;
 import vn.vti.moneypig.models.CommandCoffeeArabica;
 import vn.vti.moneypig.models.CommandCoffeeVn;
 import vn.vti.moneypig.repositories.CommandCoffeeVnRepository;
+import vn.vti.moneypig.repositories.UserRepository;
 import vn.vti.moneypig.utils.DateUtils;
 
 import java.text.SimpleDateFormat;
@@ -23,13 +24,18 @@ import java.util.List;
 @Service
 public class CommandCoffeeVnService {
 
+
     private final CommandCoffeeVnRepository commandCoffeeVnRepository;
 
+     final UserService userService;
     @Autowired
     SequenceGeneratorService sequenceGeneratorService;
+
+
     @Autowired
-    public CommandCoffeeVnService(CommandCoffeeVnRepository commandCoffeeVnRepository, MongoTemplate mongoTemplate) {
+    public CommandCoffeeVnService(CommandCoffeeVnRepository commandCoffeeVnRepository, UserService userService, MongoTemplate mongoTemplate) {
         this.commandCoffeeVnRepository = commandCoffeeVnRepository;
+        this.userService = userService;
         this.mongoTemplate = mongoTemplate;
     }
 
@@ -59,8 +65,14 @@ public class CommandCoffeeVnService {
         commandCoffeeVn.setResult(0);
         commandCoffeeVn.setTime(DateUtils.getCurrentDateYYYYMMDDHHmmss());
         commandCoffeeVn.setTimeUTC(DateUtils.getCurrentTimeUTC());
-        return commandCoffeeVnRepository.insert(commandCoffeeVn);
+        if(commandCoffeeVn.getMoney()<= userService.getGold(commandCoffeeVn.getUsername()))
+        {
+            userService.subGold(commandCoffeeVn.getMoney(), commandCoffeeVn.getUsername());
+            return commandCoffeeVnRepository.insert(commandCoffeeVn);
         }
+        return  null;
+
+    }
 
     public List<CommandCoffeeVn> getRecordsWithinLast60SecondsUpdate() {
         LocalDateTime currentTime = LocalDateTime.now();
