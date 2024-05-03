@@ -33,6 +33,7 @@ public class ChatTopicCoffeeVnService {
         chat.setCreatedDate(DateUtils.getCurrentDateYYYYMMDDHHmmss());
         chat.setCreateDateUTCString(DateUtils.getCurrentTimeUTC());
         User user = userService.findById(chat.getSenderID());
+        chat.setSender(user.getUsername());
         chat.setEmail(user.getEmail());
         return chatRepository.insert(chat);
     }

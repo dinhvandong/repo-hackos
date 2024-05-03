@@ -34,6 +34,8 @@ public class ChatTopicGbpService {
         chat.setCreateDateUTCString(DateUtils.getCurrentTimeUTC());
         User user = userService.findById(chat.getSenderID());
         chat.setEmail(user.getEmail());
+        chat.setSender(user.getUsername());
+
         return chatRepository.insert(chat);
     }
 

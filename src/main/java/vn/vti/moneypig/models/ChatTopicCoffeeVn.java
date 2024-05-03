@@ -17,6 +17,16 @@ public class ChatTopicCoffeeVn {
 
     private Long senderID;
 
+    private String sender;
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
     private Long createdDate;
 
     private String createDateUTCString;

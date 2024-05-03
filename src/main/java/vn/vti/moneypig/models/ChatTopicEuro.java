@@ -23,6 +23,16 @@ public class ChatTopicEuro {
 
     private String email;
 
+    private String sender;
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
     public String getCreateDateUTCString() {
         return createDateUTCString;
     }

@@ -22,7 +22,15 @@ public class ChatTopicGoldBtmc {
     private String createDateUTCString;
 
     private String email;
+    private String sender;
 
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
     public String getCreateDateUTCString() {
         return createDateUTCString;
     }
