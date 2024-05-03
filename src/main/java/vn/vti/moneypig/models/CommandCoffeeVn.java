@@ -12,10 +12,30 @@ public class CommandCoffeeVn {
     private Long id;
     @Transient
     public static final String SEQUENCE_NAME = "command_coffee_vn_sequence";
-    private int value;
+    private int value; //-1 1
+
+    private double money;
     private Long time;
+
+    private String timeUTC;
+
+    public String getTimeUTC() {
+        return timeUTC;
+    }
+
+    public void setTimeUTC(String timeUTC) {
+        this.timeUTC = timeUTC;
+    }
+
     private String username;
-    private Long timeYYYYMMDDHHmm;
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
 
     public Long getId() {
         return id;
@@ -52,11 +72,4 @@ public class CommandCoffeeVn {
         this.username = username;
     }
 
-    public Long getTimeYYYYMMDDHHmm() {
-        return timeYYYYMMDDHHmm;
-    }
-
-    public void setTimeYYYYMMDDHHmm(Long timeYYYYMMDDHHmm) {
-        this.timeYYYYMMDDHHmm = timeYYYYMMDDHHmm;
-    }
-}
+   }

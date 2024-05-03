@@ -1,7 +1,9 @@
 package vn.vti.moneypig.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import vn.vti.moneypig.models.ChatTopicCoffeeVn;
 import vn.vti.moneypig.models.CommandCoffeeVn;
 import vn.vti.moneypig.services.CommandCoffeeVnService;
 
@@ -35,5 +37,13 @@ public class CommandCoffeeVnController {
     public CommandCoffeeVn create(@RequestBody CommandCoffeeVn commandCoffeeVn){
 
         return commandCoffeeVnService.create(commandCoffeeVn);
+    }
+
+
+
+    @GetMapping("/findPaging")
+    public Page<CommandCoffeeVn> getPaginatedChats(@RequestParam(defaultValue = "0") int page,
+                                                     @RequestParam(defaultValue = "50") int size) {
+        return commandCoffeeVnService.getPaginatedRecords(page, size);
     }
 }

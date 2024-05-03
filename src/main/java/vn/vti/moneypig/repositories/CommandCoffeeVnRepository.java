@@ -23,4 +23,7 @@ public interface CommandCoffeeVnRepository extends MongoRepository<CommandCoffee
     })
     List<CommandCoffeeVn> findLastMessagesWithinTimeframeGroupedByUser();
 
+    List<CommandCoffeeVn> findByTimeUTCGreaterThanEqual(String timestamp);
+
+
 }
