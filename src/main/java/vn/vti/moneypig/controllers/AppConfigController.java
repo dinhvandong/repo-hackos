@@ -10,7 +10,14 @@ import vn.vti.moneypig.repositories.AppConfigRepository;
 
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://150.95.110.230")
+@CrossOrigin(origins = {
+        "http://163.44.206.118:83",
+        "http://163.44.206.118:80",
+        "http://163.44.206.118:81",
+        "http://localhost:3001",
+        "http://localhost:3000",
+        "http://150.95.113.18"
+})
 @RestController
 @RequestMapping("/api/config")
 public class AppConfigController {

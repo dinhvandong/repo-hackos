@@ -12,7 +12,14 @@ import vn.vti.moneypig.services.CoffeeRobustaService;
 
 
 
-@CrossOrigin(origins = IpServer.ip)
+@CrossOrigin(origins = {
+        "http://163.44.206.118:83",
+        "http://163.44.206.118:80",
+        "http://163.44.206.118:81",
+        "http://localhost:3001",
+        "http://localhost:3000",
+        "http://150.95.113.18"
+})
 @RestController
 @RequestMapping("/api/coffee_arabica")
 public class CoffeeArabicaController {

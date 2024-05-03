@@ -9,7 +9,14 @@ import vn.vti.moneypig.models.ChatTopicCoffeeArabica;
 import vn.vti.moneypig.services.ChatService;
 import vn.vti.moneypig.services.ChatTopicCoffeeArabicaService;
 
-@CrossOrigin(origins = IpServer.ip)
+@CrossOrigin(origins = {
+        "http://163.44.206.118:83",
+        "http://163.44.206.118:80",
+        "http://163.44.206.118:81",
+        "http://localhost:3001",
+        "http://localhost:3000",
+        "http://150.95.113.18"
+})
 @RestController
 @RequestMapping("/api/chats_coffee_arabica")
 public class ChatCoffeeArabicaController {

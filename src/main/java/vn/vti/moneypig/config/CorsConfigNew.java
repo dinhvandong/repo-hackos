@@ -19,6 +19,7 @@ public class CorsConfigNew {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.addAllowedOrigin("http://150.95.110.230");
         corsConfig.addAllowedOrigin("http://localhost:3000");
+        corsConfig.addAllowedOrigin("http://localhost:3001");
 
         // Add more allowed origins, headers, or methods as needed
         corsConfig.addAllowedMethod("*");
