@@ -33,7 +33,7 @@ public class CommandCoffeeVnController {
         return commandCoffeeVnService.getLastMessagesWithinTimeframe();
     }
 
-    @PostMapping("")
+    @PostMapping("/create")
     public CommandCoffeeVn create(@RequestBody CommandCoffeeVn commandCoffeeVn){
 
         return commandCoffeeVnService.create(commandCoffeeVn);
