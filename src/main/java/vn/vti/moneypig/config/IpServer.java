@@ -2,5 +2,5 @@ package vn.vti.moneypig.config;
 
 public class IpServer {
 
-    public static final String ip = "http://localhost:3001";
+    public static final String ip = "http://150.95.113.18:3001";
 }

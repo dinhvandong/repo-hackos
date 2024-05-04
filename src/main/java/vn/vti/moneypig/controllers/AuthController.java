@@ -21,6 +21,8 @@ import vn.vti.moneypig.services.UserService;
         "http://163.44.206.118:80",
         "http://163.44.206.118:81",
         "http://localhost:3001",
+        "http://150.95.113.18:3001",
+
         "http://localhost:3000",
         "http://150.95.113.18"
 })
