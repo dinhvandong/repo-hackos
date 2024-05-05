@@ -12,12 +12,45 @@ public class CommandCoffeeRobusta {
     private Long id;
     @Transient
     public static final String SEQUENCE_NAME = "command_coffee_robusta_sequence";
-    private int value;
-    private  int type;
+    private int value; //-1 1
+    private double money;
     private Long time;
-    private Long userId;
+    private boolean status = true;
+
+    private int result=0;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    private String timeUTC;
+    public String getTimeUTC() {
+        return timeUTC;
+    }
+    public void setTimeUTC(String timeUTC) {
+        this.timeUTC = timeUTC;
+    }
     private String username;
-    private Long timeYYYYMMDDHHMM;
+    public double getMoney() {
+        return money;
+    }
+    public void setMoney(double money) {
+        this.money = money;
+    }
 
     public Long getId() {
         return id;
@@ -35,13 +68,7 @@ public class CommandCoffeeRobusta {
         this.value = value;
     }
 
-    public int getType() {
-        return type;
-    }
 
-    public void setType(int type) {
-        this.type = type;
-    }
 
     public Long getTime() {
         return time;
@@ -51,13 +78,6 @@ public class CommandCoffeeRobusta {
         this.time = time;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 
     public String getUsername() {
         return username;
@@ -67,11 +87,4 @@ public class CommandCoffeeRobusta {
         this.username = username;
     }
 
-    public Long getTimeYYYYMMDDHHMM() {
-        return timeYYYYMMDDHHMM;
-    }
-
-    public void setTimeYYYYMMDDHHMM(Long timeYYYYMMDDHHMM) {
-        this.timeYYYYMMDDHHMM = timeYYYYMMDDHHMM;
-    }
 }
